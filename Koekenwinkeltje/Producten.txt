@@ -1,0 +1,9 @@
+﻿Betterfood||0.5
+Vitabis||0.6
+Pims||0.35
+Leo||0.8
+Wafel||0.25
+Suikerwafel||0.3
+Antwerps handje||0.95
+Chocolade wafel||0.4
+Petit Beure||0.65

@@ -89,6 +89,7 @@
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Einde";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // label1
             // 
@@ -182,6 +183,7 @@
             this.lbKeuze.Name = "lbKeuze";
             this.lbKeuze.Size = new System.Drawing.Size(348, 199);
             this.lbKeuze.TabIndex = 3;
+            this.lbKeuze.SelectedIndexChanged += new System.EventHandler(this.lbKeuze_SelectedIndexChanged);
             // 
             // frmMain
             // 
