@@ -19,22 +19,15 @@ namespace Koekenwinkeltje
             big = 10,
             tenthCustomer = 5,
             goodGamble = 15
-
         }
 
         public bool special { get {return _special;} set { _special = value; } }
+        public bool gamble { get { return _gamble; } set { _gamble = value; } }
         public double aantal { get { return _aantal; } set { _aantal = value; } }
         public double btw { get { return _btw; } set { _btw = value; } }
         public double eenheid { get { return _eenheid; } set { _eenheid = value; } }
 
-        public Calculate(bool special, double aantal, double btw, string sEenheid, bool gamble)
-        {
-            _special = special;
-            _aantal = aantal;
-            _btw = btw;
-            _eenheid = Products.producten[sEenheid];
-            _gamble = gamble;
-        }
+        public Calculate(){}
 
         public string GetResult(string soort)
         {

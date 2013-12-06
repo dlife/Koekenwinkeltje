@@ -49,16 +49,20 @@
             // txtAantal
             // 
             this.txtAantal.Location = new System.Drawing.Point(384, 47);
+            this.txtAantal.MaxLength = 10;
             this.txtAantal.Name = "txtAantal";
             this.txtAantal.Size = new System.Drawing.Size(115, 20);
             this.txtAantal.TabIndex = 1;
+            this.txtAantal.Tag = "";
             // 
             // txtBtw
             // 
             this.txtBtw.Location = new System.Drawing.Point(384, 121);
+            this.txtBtw.MaxLength = 2;
             this.txtBtw.Name = "txtBtw";
             this.txtBtw.Size = new System.Drawing.Size(115, 20);
             this.txtBtw.TabIndex = 2;
+            this.txtBtw.Tag = "";
             // 
             // btnBereken
             // 
@@ -101,6 +105,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 16);
             this.label1.TabIndex = 6;
+            this.label1.Tag = "d";
             this.label1.Text = "Koekje";
             // 
             // label2
@@ -111,6 +116,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 7;
+            this.label2.Tag = "d";
             this.label2.Text = "Aantal";
             // 
             // label3
@@ -121,6 +127,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 16);
             this.label3.TabIndex = 8;
+            this.label3.Tag = "d";
             this.label3.Text = "Btw";
             // 
             // lblEenheid
@@ -131,6 +138,7 @@
             this.lblEenheid.Name = "lblEenheid";
             this.lblEenheid.Size = new System.Drawing.Size(0, 16);
             this.lblEenheid.TabIndex = 9;
+            this.lblEenheid.Tag = "lbl";
             // 
             // lblTotaal
             // 
@@ -139,6 +147,7 @@
             this.lblTotaal.Name = "lblTotaal";
             this.lblTotaal.Size = new System.Drawing.Size(499, 108);
             this.lblTotaal.TabIndex = 10;
+            this.lblTotaal.Tag = "lbl";
             // 
             // gbGamble
             // 
@@ -162,14 +171,18 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 16);
             this.label6.TabIndex = 2;
+            this.label6.Tag = "d";
             this.label6.Text = "Getal:";
             // 
             // txtGamble
             // 
             this.txtGamble.Location = new System.Drawing.Point(62, 21);
+            this.txtGamble.MaxLength = 1;
             this.txtGamble.Name = "txtGamble";
             this.txtGamble.Size = new System.Drawing.Size(100, 22);
             this.txtGamble.TabIndex = 1;
+            this.txtGamble.Tag = "lbl";
+            this.txtGamble.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGamble_KeyPress);
             // 
             // btnGamble
             // 
@@ -188,6 +201,7 @@
             this.lbKeuze.Name = "lbKeuze";
             this.lbKeuze.Size = new System.Drawing.Size(348, 199);
             this.lbKeuze.TabIndex = 0;
+            this.lbKeuze.Tag = "";
             this.lbKeuze.SelectedIndexChanged += new System.EventHandler(this.lbKeuze_SelectedIndexChanged);
             // 
             // frmMain

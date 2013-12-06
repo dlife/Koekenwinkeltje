@@ -12,9 +12,11 @@ namespace Koekenwinkeltje
 {
     public partial class frmMain : Form
     {
+        UserInputValidation valid = new UserInputValidation();
+        Calculate reken = new Calculate();
+
         public int count = 0;
         public int gambleCount = 0;
-        bool gamble = false;
 
         public frmMain()
         {
@@ -27,6 +29,7 @@ namespace Koekenwinkeltje
         {
             lbKeuze.SelectedIndex = -1;
             lblEenheid.Text = "";
+            reken.gamble = false;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -49,7 +52,23 @@ namespace Koekenwinkeltje
 
         private void btnBereken_Click(object sender, EventArgs e)
         {
+           
+            if (!valid.ValidateDouble(txtAantal.Text))
+            {
+                return;
+            }
+            if (!valid.ValidateDouble(txtBtw.Text))
+            {
+                return;
+            }
+            if (lbKeuze.SelectedIndex == -1)
+            {
+                return;
+            }
             count++;
+            reken.aantal = double.Parse(txtAantal.Text);
+            reken.btw = double.Parse(txtBtw.Text);
+            reken.eenheid = double.Parse(Products.producten[lbKeuze.SelectedItem.ToString()].ToString());
             BtnCalc();
         }
 
@@ -78,7 +97,7 @@ namespace Koekenwinkeltje
                 gambleCount = 0;
             }
             txtGamble.Text = "";
-            MessageBox.Show(message, "Gokje", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            MessageBox.Show(message, "Gokje", MessageBoxButtons.OK, MessageBoxIcon.None);
             
         }
 
@@ -93,7 +112,7 @@ namespace Koekenwinkeltje
 
         private void BtnCalc()
         {
-            bool test = count == 10;
+            bool test = count   == 10;
             if (test)
             {
                 Shift();
@@ -101,8 +120,7 @@ namespace Koekenwinkeltje
                 count = 0;
                 return;
             }
-            Calculate bereken = new Calculate(test, Double.Parse(txtAantal.Text), Double.Parse(txtBtw.Text), lbKeuze.SelectedItem.ToString(), gamble);
-            lblTotaal.Text = bereken.GetResult(lbKeuze.SelectedItem.ToString());
+            lblTotaal.Text = reken.GetResult(lbKeuze.SelectedItem.ToString());
         }
 
         private bool TestGamble(int getal, int gok, string message)
@@ -111,11 +129,12 @@ namespace Koekenwinkeltje
             if (test)
             {
                 message += "\nJe hebt extra korting gewonnen!!";
-                gamble = true;
+                reken.gamble = true;
                 Shift();
                 gambleCount = 0;
-                MessageBox.Show(message, "Gewonnen", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show(message, "Gewonnen", MessageBoxButtons.OK, MessageBoxIcon.None);
                 BtnCalc();
+                reken.gamble = false;
             }
             return test;
         }
@@ -124,10 +143,33 @@ namespace Koekenwinkeltje
         {
             foreach (Control item in Controls)
             {
-                if (item == TextBox )
+                if (item is TextBox)
                 {
-                    
+                    (item as TextBox).Text = "";
+                    (item as TextBox).Enabled = true;
                 }
+                if (item is Label)
+                {
+                    if ((item as Label).Tag.ToString() ==  "lbl")
+                    {
+                        (item as Label).Text = "";
+                    }
+                }
+            }
+            btnBereken.Enabled = true;
+            lbKeuze.Enabled = true;
+            lbKeuze.SelectedIndex = -1;
+            gbGamble.Visible = false;
+        }
+
+        private void txtGamble_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '\b')
+            {
+                txtGamble.Focus();
+                txtGamble.Text = "";
+                MessageBox.Show("Vul een getal in van 1 tot 10");
+
             }
         }
     }
