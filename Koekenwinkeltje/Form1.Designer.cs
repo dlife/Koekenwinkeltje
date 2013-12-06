@@ -39,9 +39,9 @@
             this.lblEenheid = new System.Windows.Forms.Label();
             this.lblTotaal = new System.Windows.Forms.Label();
             this.gbGamble = new System.Windows.Forms.GroupBox();
-            this.btnGamble = new System.Windows.Forms.Button();
-            this.txtGamble = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtGamble = new System.Windows.Forms.TextBox();
+            this.btnGamble = new System.Windows.Forms.Button();
             this.lbKeuze = new System.Windows.Forms.ListBox();
             this.gbGamble.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +69,7 @@
             this.btnBereken.TabIndex = 3;
             this.btnBereken.Text = "Bereken";
             this.btnBereken.UseVisualStyleBackColor = true;
+            this.btnBereken.Click += new System.EventHandler(this.btnBereken_Click);
             // 
             // btnReset
             // 
@@ -79,6 +80,7 @@
             this.btnReset.TabIndex = 4;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnExit
             // 
@@ -124,13 +126,15 @@
             // lblEenheid
             // 
             this.lblEenheid.AutoSize = true;
+            this.lblEenheid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEenheid.Location = new System.Drawing.Point(12, 238);
             this.lblEenheid.Name = "lblEenheid";
-            this.lblEenheid.Size = new System.Drawing.Size(0, 13);
+            this.lblEenheid.Size = new System.Drawing.Size(0, 16);
             this.lblEenheid.TabIndex = 9;
             // 
             // lblTotaal
             // 
+            this.lblTotaal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotaal.Location = new System.Drawing.Point(9, 271);
             this.lblTotaal.Name = "lblTotaal";
             this.lblTotaal.Size = new System.Drawing.Size(499, 108);
@@ -150,22 +154,6 @@
             this.gbGamble.Text = "Geef een getal in tussen 0 en 10";
             this.gbGamble.Visible = false;
             // 
-            // btnGamble
-            // 
-            this.btnGamble.Location = new System.Drawing.Point(168, 21);
-            this.btnGamble.Name = "btnGamble";
-            this.btnGamble.Size = new System.Drawing.Size(39, 23);
-            this.btnGamble.TabIndex = 0;
-            this.btnGamble.Text = "OK";
-            this.btnGamble.UseVisualStyleBackColor = true;
-            // 
-            // txtGamble
-            // 
-            this.txtGamble.Location = new System.Drawing.Point(62, 21);
-            this.txtGamble.Name = "txtGamble";
-            this.txtGamble.Size = new System.Drawing.Size(100, 22);
-            this.txtGamble.TabIndex = 1;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -176,13 +164,30 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Getal:";
             // 
+            // txtGamble
+            // 
+            this.txtGamble.Location = new System.Drawing.Point(62, 21);
+            this.txtGamble.Name = "txtGamble";
+            this.txtGamble.Size = new System.Drawing.Size(100, 22);
+            this.txtGamble.TabIndex = 1;
+            // 
+            // btnGamble
+            // 
+            this.btnGamble.Location = new System.Drawing.Point(168, 21);
+            this.btnGamble.Name = "btnGamble";
+            this.btnGamble.Size = new System.Drawing.Size(39, 23);
+            this.btnGamble.TabIndex = 0;
+            this.btnGamble.Text = "OK";
+            this.btnGamble.UseVisualStyleBackColor = true;
+            this.btnGamble.Click += new System.EventHandler(this.btnGamble_Click);
+            // 
             // lbKeuze
             // 
             this.lbKeuze.FormattingEnabled = true;
             this.lbKeuze.Location = new System.Drawing.Point(12, 26);
             this.lbKeuze.Name = "lbKeuze";
             this.lbKeuze.Size = new System.Drawing.Size(348, 199);
-            this.lbKeuze.TabIndex = 3;
+            this.lbKeuze.TabIndex = 0;
             this.lbKeuze.SelectedIndexChanged += new System.EventHandler(this.lbKeuze_SelectedIndexChanged);
             // 
             // frmMain
