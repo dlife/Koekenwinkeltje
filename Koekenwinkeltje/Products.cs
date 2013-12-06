@@ -11,7 +11,7 @@ namespace Koekenwinkeltje
 {
     class Products
     {
-        public static Dictionary<string, double> producten = new Dictionary<string, double>();
+        public static Dictionary<string, Decimal> producten = new Dictionary<string, Decimal>();
         /// <summary>
         /// Reads txt file with special format -> '[key] || [pair] newline'
         /// </summary>
@@ -29,7 +29,7 @@ namespace Koekenwinkeltje
                 //MatchCollection mc = Regex.Matches(products, "(?<product>[a-zA-Z ]+).*(?<prijs>\\d+(\\.\\d{1,2}))");
                 foreach (Match m in Regex.Matches(products, "(?<product>[a-zA-Z ]+).*(?<prijs>\\d+(\\.\\d{1,2}))"))
                 {
-                    producten.Add(m.Groups["product"].Value, Double.Parse(m.Groups["prijs"].Value, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo));
+                    producten.Add(m.Groups["product"].Value, Decimal.Parse(m.Groups["prijs"].Value, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo));
                 }
             }
             catch (FileNotFoundException)

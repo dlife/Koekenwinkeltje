@@ -69,9 +69,9 @@ namespace Koekenwinkeltje
                 return;
             }
             count++;
-            reken.aantal = double.Parse(txtAantal.Text);
-            reken.btw = double.Parse(txtBtw.Text);
-            reken.eenheid = double.Parse(Products.producten[lbKeuze.SelectedItem.ToString()].ToString());
+            reken.aantal = Decimal.Parse(txtAantal.Text);
+            reken.btw = Decimal.Parse(txtBtw.Text);
+            reken.eenheid = Decimal.Parse(Products.producten[lbKeuze.SelectedItem.ToString()].ToString());
             BtnCalc();
         }
 

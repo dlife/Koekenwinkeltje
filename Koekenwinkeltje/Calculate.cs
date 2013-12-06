@@ -10,9 +10,9 @@ namespace Koekenwinkeltje
     {
         private bool _special;
         private bool _gamble;
-        private double _aantal;
-        private double _btw;
-        private double _eenheid;
+        private Decimal _aantal;
+        private Decimal _btw;
+        private Decimal _eenheid;
 
         private enum Reduction
         { 
@@ -23,35 +23,42 @@ namespace Koekenwinkeltje
 
         public bool special { get {return _special;} set { _special = value; } }
         public bool gamble { get { return _gamble; } set { _gamble = value; } }
-        public double aantal { get { return _aantal; } set { _aantal = value; } }
-        public double btw { get { return _btw; } set { _btw = value; } }
-        public double eenheid { get { return _eenheid; } set { _eenheid = value; } }
+        public Decimal aantal { get { return _aantal; } set { _aantal = value; } }
+        public Decimal btw { get { return _btw; } set { _btw = value; } }
+        public Decimal eenheid { get { return _eenheid; } set { _eenheid = value; } }
 
         public Calculate(){}
 
         public string GetResult(string soort)
         {
             string result;
-            double calcResult = _aantal * _eenheid;
+            Decimal calcResult = _aantal * _eenheid;
             result = "De totaalprijs voor " + _aantal + " koekje(s) van het type " + soort + " (eenheidsprijs: €" + _eenheid + ") + 21% BTW";
-            if (calcResult > 25)
+            if (calcResult > 25.0M)
             {
-                calcResult = calcResult - ((calcResult * (double)Reduction.big)/100);
+                calcResult -= calcPerc(calcResult,(Decimal)Reduction.big);
                 result += " met 10 % korting";
             }
             if (_special)
             {
-                calcResult = calcResult - ((calcResult * (double)Reduction.tenthCustomer)/100);
+                calcResult -= calcPerc(calcResult,(Decimal)Reduction.tenthCustomer);
                 result += " en nog een extra 5% korting (elke 10e klant)";
             }
             if (_gamble)
             {
-                calcResult = calcResult - ((calcResult * (double)Reduction.goodGamble)/100);
+                calcResult -= calcPerc(calcResult,(Decimal)Reduction.goodGamble);
                 result += " en nog een extra korting van 15% (goed gegokt!!)";
             }
+            calcResult += calcPerc(calcResult,_btw);
+
             result += " bedraagt €" + calcResult + ".";
 
             return result;
+        }
+
+        private Decimal calcPerc(Decimal subResult, Decimal reduction)
+        {
+            return (subResult * reduction) / 100.0M;
         }
 
     }

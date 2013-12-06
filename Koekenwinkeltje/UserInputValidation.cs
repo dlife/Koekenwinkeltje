@@ -14,7 +14,7 @@ namespace Koekenwinkeltje
         {
             try
             {
-                double getal = double.Parse(invoer, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
+                Decimal getal = Decimal.Parse(invoer, NumberStyles.AllowDecimalPoint, NumberFormatInfo.InvariantInfo);
                 if (getal < 0)
                 {
                     MessageBox.Show("Geef een getal in dat groter is dan 0", "NegativeNumber", MessageBoxButtons.OK, MessageBoxIcon.Error);
