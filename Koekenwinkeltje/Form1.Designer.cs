@@ -182,6 +182,7 @@
             this.txtGamble.Size = new System.Drawing.Size(100, 22);
             this.txtGamble.TabIndex = 1;
             this.txtGamble.Tag = "lbl";
+            this.txtGamble.TextChanged += new System.EventHandler(this.txtGamble_TextChanged);
             this.txtGamble.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGamble_KeyPress);
             // 
             // btnGamble

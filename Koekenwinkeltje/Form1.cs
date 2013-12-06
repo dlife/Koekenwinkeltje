@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Koekenwinkeltje
 {
@@ -17,6 +18,7 @@ namespace Koekenwinkeltje
 
         public int count = 0;
         public int gambleCount = 0;
+        public bool wrongKey = false;
 
         public frmMain()
         {
@@ -63,6 +65,7 @@ namespace Koekenwinkeltje
             }
             if (lbKeuze.SelectedIndex == -1)
             {
+                MessageBox.Show("Selecteer een product uit de lijst", "Geen product geselcteerd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             count++;
@@ -90,15 +93,15 @@ namespace Koekenwinkeltje
             }
             else
             {
-
                 if (TestGamble(getal, gok, message))
                 { return; }
                 Shift();
                 gambleCount = 0;
             }
             txtGamble.Text = "";
-            MessageBox.Show(message, "Gokje", MessageBoxButtons.OK, MessageBoxIcon.None);
             
+            MessageBox.Show(message, "Gokje", MessageBoxButtons.OK, MessageBoxIcon.None);
+            txtGamble.Focus();
         }
 
         public void Shift()
@@ -160,17 +163,30 @@ namespace Koekenwinkeltje
             lbKeuze.Enabled = true;
             lbKeuze.SelectedIndex = -1;
             gbGamble.Visible = false;
+            wrongKey = false;
         }
 
         private void txtGamble_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != '\b')
+            string s = e.KeyChar.ToString();
+            if (Regex.IsMatch(s,"[^\\d\\s]"))
             {
-                txtGamble.Focus();
-                txtGamble.Text = "";
+                wrongKey = true;
                 MessageBox.Show("Vul een getal in van 1 tot 10");
-
             }
+        }
+
+        private void txtGamble_TextChanged(object sender, EventArgs e)
+        {
+            if (wrongKey == true)
+            {
+                txtGamble.Text = "";
+            }
+            else
+            {
+                btnGamble.Focus();
+            }
+            wrongKey = false;
         }
     }
 }
